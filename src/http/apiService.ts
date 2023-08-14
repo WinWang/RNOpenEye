@@ -9,7 +9,7 @@ let baseUrl = "https://baobab.kaiyanapp.com/";
 function getHomeList(date: String) {
     return httpRequest.get<homeModel>(
         {
-            url: baseUrl + "/api/v2/feed",
+            url: baseUrl + "api/v2/feed",
             params: {"date": date, "num": 1},
             checkResultCode: false,
             showLoading: true

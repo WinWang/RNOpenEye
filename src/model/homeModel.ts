@@ -14,6 +14,9 @@ export interface HomeModelIssueListItemListData {
     actionUrl: string;
     shade: boolean;
     autoPlay: boolean;
+    category: string;
+    cover: CoverModel;
+    author: AuthorModel;
 }
 
 export interface HomeModelIssueListItemList {
@@ -31,3 +34,44 @@ export interface HomeModelIssueList {
     itemList: HomeModelIssueListItemList[];
     count: number;
 }
+
+export interface CoverModel {
+    feed: string;
+    detail: string;
+    blurred: string;
+    sharing?: any;
+    homepage: string;
+}
+
+export interface AuthorModel {
+    id: number;
+    icon: string;
+    name: string;
+    description: string;
+    link: string;
+    latestReleaseTime: number;
+    videoNum: number;
+    adTrack?: any;
+    follow: RootObjectFollow;
+    shield: RootObjectShield;
+    approvedNotReadyVideoCount: number;
+    ifPgc: boolean;
+    recSort: number;
+    expert: boolean;
+}
+
+export interface RootObjectFollow {
+    itemType: string;
+    itemId: number;
+    followed: boolean;
+}
+
+export interface RootObjectShield {
+    itemType: string;
+    itemId: number;
+    shielded: boolean;
+}
+
+
+
+

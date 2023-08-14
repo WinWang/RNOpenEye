@@ -4,7 +4,6 @@ import {View, Text, StyleSheet, Platform, StatusBar, useWindowDimensions} from '
 const TitleBar: React.FC<{ title: string }> = ({title}) => {
     const {height} = useWindowDimensions();
     const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight || 0 : 0;
-
     return (
         <View style={[styles.container, {height: statusBarHeight + 40}]}>
             <StatusBar translucent backgroundColor="transparent"/>

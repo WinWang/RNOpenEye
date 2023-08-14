@@ -24,6 +24,10 @@ const httpRequest = new HttpRequest({
     checkResultCode: true,
     interceptorHooks: {
         requestInterceptor: (config) => {
+            // 在发送请求之前做一些处理，例如打印请求信息
+            console.log('网络请求Request>>>>>:', config.method, config.url);
+            console.log('网络请求Request Data:', config.params);
+            console.log('网络请求Request Data:', config.data);
             if (config.showLoading) {
                 globalStore.setLoading(true)
             }
@@ -47,6 +51,7 @@ const httpRequest = new HttpRequest({
         responseInterceptor: (response) => {
             //优先执行自己的请求响应拦截器，在执行通用请求request的
             globalStore.setLoading(false)
+            console.log('网络响应Response>>>:', response.status, response.data);
             if (response.status === 200) {
                 // @ts-ignore
                 const checkResultCode = response.config.checkResultCode

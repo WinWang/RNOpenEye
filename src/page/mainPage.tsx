@@ -4,11 +4,11 @@ import {useEffect, useState} from "react";
 import apiService from "../http/apiService";
 import Toast from "react-native-toast-message";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomePage from "./homePage";
-import FindPage from "./findPage";
+import HomePage from "./home/homePage";
+import FindPage from "./find/findPage";
 import {Find, Home, Hot, Mine} from '../route/router'
-import HotPage from "./hotPage";
-import MinePage from "./minePage";
+import HotPage from "./hot/hotPage";
+import MinePage from "./mine/minePage";
 
 const MainPage = () => {
 
@@ -23,13 +23,7 @@ const MainPage = () => {
     };
 
     useEffect(() => {
-        apiService.getHomeList("").then(r => {
-            console.log(">>>>>>" + r.nextPageUrl)
-            Toast.show({
-                type: "info",
-                text1: r.nextPageUrl
-            })
-        })
+
     }, [])
 
 
