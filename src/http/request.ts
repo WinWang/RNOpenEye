@@ -2,6 +2,9 @@ import HttpRequest from "./http"
 import {AxiosError} from "axios";
 import Toast from 'react-native-toast-message';
 import globalStore from '../store/GlobalStore';
+import LogUtils from "../utils/LogUtils";
+import StorageUtil from "../utils/StorageUtil";
+import {LoginKey} from "../constant/CommonKeys";
 /**.
  *  为什么我们要对axios进行封装？
  * 1.外部依赖库，有停止维护的风险，将项目中使用的方法逻辑封装到一个文件/文件夹中同意导出，方便更换库，有利于维护
@@ -18,6 +21,8 @@ import globalStore from '../store/GlobalStore';
  * 什么时候需要创建多个实例？
  * 比如baseURL不同，且在这个baseURL下请求多次，这个时候创建一个公用的请求实例能够提升代码的可维护性
  */
+
+
 const httpRequest = new HttpRequest({
     baseURL: "/api",
     timeout: 10 * 1000,
@@ -25,33 +30,34 @@ const httpRequest = new HttpRequest({
     interceptorHooks: {
         requestInterceptor: (config) => {
             // 在发送请求之前做一些处理，例如打印请求信息
-            console.log('网络请求Request>>>>>:', config.method, config.url);
-            console.log('网络请求Request Data:', config.params);
-            console.log('网络请求Request Data:', config.data);
+            LogUtils.info('网络请求Request 请求方法:', `${config.method}`);
+            LogUtils.info('网络请求Request 请求链接:', `${config.url}`);
+            LogUtils.info('网络请求Request Params:', `\n${JSON.stringify(config.params, null, 2)}`);
+            LogUtils.info('网络请求Request Data:', `${JSON.stringify(config.data, null, 2)}`);
             if (config.showLoading) {
                 globalStore.setLoading(true)
             }
-            // if (config.checkLoginState) {
-            //     if (userStore.getLoginState) {
-            //         return config
-            //     } else if (config.needJumpToLogin) {
-            //         router.push({
-            //             path: "/loginPage"
-            //         })
-            //         throw new AxiosError("请登录")
-            //     }
-            // }
+            if (config.checkLoginState) {
+                StorageUtil.getValue<boolean>(LoginKey, (hasLogin) => {
+                    if (hasLogin) {
+                        return config
+                    } else {
+                        throw new AxiosError("请登录")
+                    }
+                })
+            }
             return config;
         },
         requestInterceptorCatch: (err) => {
-            console.log("RequestError", err.toString())
+            LogUtils.info("网络请求RequestError", err.toString())
             globalStore.setLoading(false)
             return err;
         },
         responseInterceptor: (response) => {
             //优先执行自己的请求响应拦截器，在执行通用请求request的
             globalStore.setLoading(false)
-            console.log('网络响应Response>>>:', response.status, response.data);
+            LogUtils.info('网络响应Response>>>:', `${response.status}`);
+            // LogUtils.info('网络响应Response>>>:', `\n${JSON.stringify(response.data, null, 2)}`);
             if (response.status === 200) {
                 // @ts-ignore
                 const checkResultCode = response.config.checkResultCode

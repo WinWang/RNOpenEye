@@ -11,7 +11,7 @@ import {StyleSheet, useColorScheme,} from 'react-native';
 import {Colors,} from 'react-native/Libraries/NewAppScreen';
 import Loading from "./src/component/Loading";
 import {NavigationContainer} from "@react-navigation/native";
-import {Router} from "./src/route/router";
+import {AppRouter} from "./src/route/router";
 import Toast from "react-native-toast-message";
 import StatusBarManager from "./src/utils/StatusBarManager";
 
@@ -27,7 +27,7 @@ function App(): JSX.Element {
 
     return (
         <NavigationContainer>
-            <Router/>
+            <AppRouter/>
             <Loading/>
             <Toast/>
         </NavigationContainer>

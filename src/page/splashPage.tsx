@@ -9,13 +9,16 @@ import {Main} from "../route/router";
  * @constructor
  */
 const SplashPage = () => {
-    const navigation = useNavigation()
+    const navigate = useNavigation()
 
     useEffect(() => {
+
+
+
         setTimeout(() => {
             // @ts-ignore
-            navigation.replace(Main)
-        }, 3000)
+            navigate.replace(Main)
+        }, 1000)
     }, [])
 
     return (

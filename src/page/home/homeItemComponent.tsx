@@ -1,31 +1,36 @@
 import React from "react";
 import {HomeModelIssueListItemList} from "../../model/homeModel";
-import {Image, StyleSheet, Text, View} from "react-native";
+import {Image, Pressable, StyleSheet, Text, View} from "react-native";
 
 /**
  * 首页条目的item
  * @param item
+ * @param itemClick
  * @constructor
  */
-const HomeItemComponent = (item: HomeModelIssueListItemList) => {
+const HomeItemComponent = (item: HomeModelIssueListItemList,itemClick:(item:HomeModelIssueListItemList)=>void) => {
     return (
-        <View style={homeItemStyles.homeVerticalLayout}>
-            <View style={homeItemStyles.homeItemHeight}>
-                <Image
-                    source={{uri: item.data.cover.feed}}
-                    style={{flex: 1}}/>
-                <Text style={homeItemStyles.homeItemTag}>{item.data.category}</Text>
-            </View>
-            <View style={homeItemStyles.homeBottomWarpStyle}>
-                <Image source={{uri: item.data.author.icon}} style={{height: 40, width: 40, borderRadius: 20}}/>
-                <View style={homeItemStyles.homeBottomTextWrap}>
-                    <Text numberOfLines={1} ellipsizeMode={"tail"}
-                          style={homeItemStyles.homeTitleStyle}>{item.data.author.name}</Text>
-                    <Text numberOfLines={1} ellipsizeMode={"tail"}
-                          style={homeItemStyles.homeDescTextStyle}>{item.data.author.description}</Text>
+        <Pressable onPress={() => {
+            itemClick(item)
+        }}>
+            <View style={homeItemStyles.homeVerticalLayout}>
+                <View style={homeItemStyles.homeItemHeight}>
+                    <Image
+                        source={{uri: item.data.cover.feed}}
+                        style={{flex: 1}}/>
+                    <Text style={homeItemStyles.homeItemTag}>{item.data.category}</Text>
+                </View>
+                <View style={homeItemStyles.homeBottomWarpStyle}>
+                    <Image source={{uri: item.data.author.icon}} style={{height: 40, width: 40, borderRadius: 20}}/>
+                    <View style={homeItemStyles.homeBottomTextWrap}>
+                        <Text numberOfLines={1} ellipsizeMode={"tail"}
+                              style={homeItemStyles.homeTitleStyle}>{item.data.author.name}</Text>
+                        <Text numberOfLines={1} ellipsizeMode={"tail"}
+                              style={homeItemStyles.homeDescTextStyle}>{item.data.author.description}</Text>
+                    </View>
                 </View>
             </View>
-        </View>
+        </Pressable>
     )
 }
 

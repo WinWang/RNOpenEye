@@ -1,8 +1,5 @@
-import {Image, useColorScheme} from "react-native";
+import {Image} from "react-native";
 import {Colors} from "react-native/Libraries/NewAppScreen";
-import {useEffect, useState} from "react";
-import apiService from "../http/apiService";
-import Toast from "react-native-toast-message";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomePage from "./home/homePage";
 import FindPage from "./find/findPage";
@@ -11,22 +8,7 @@ import HotPage from "./hot/hotPage";
 import MinePage from "./mine/minePage";
 
 const MainPage = () => {
-
-    const [dataList, setDataList] = useState([]);
-
-    const isDarkMode = useColorScheme() === 'dark';
-
     const Tab = createBottomTabNavigator();
-
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
-
-    useEffect(() => {
-
-    }, [])
-
-
     return (
         <Tab.Navigator
             initialRouteName={Home}

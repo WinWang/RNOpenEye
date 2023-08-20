@@ -1,6 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet, Platform, StatusBar, useWindowDimensions} from 'react-native';
 
+/**
+ * 通用的titleBar
+ * @param title
+ * @constructor
+ */
 const TitleBar: React.FC<{ title: string }> = ({title}) => {
     const {height} = useWindowDimensions();
     const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight || 0 : 0;
