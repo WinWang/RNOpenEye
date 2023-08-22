@@ -42,8 +42,17 @@ const HomePage = () => {
 
     const loadNet = async () => {
         const res = await requestApi(apiService.getHomeList(date), date == "")
-        setNextUrl(res.nextPageUrl)
         let list = res.issueList[0].itemList.filter((item) => item.type === "video")
+        if (date == "") {
+            let bannerList: HomeModelIssueListItemList[]
+            let bannerBean: HomeModelIssueListItemList = {}
+            bannerList = res.issueList[0].itemList.filter((item) => item.type == "banner2")
+            if (bannerList.length > 0) {
+                bannerBean = {bannerList: bannerList, type: "banner"}
+                list.unshift(bannerBean)
+            }
+        }
+        setNextUrl(res.nextPageUrl)
         if (refreshing) {
             setDataList(list);
         } else {
@@ -61,7 +70,7 @@ const HomePage = () => {
                     data={dataList}
                     renderItem={({item}) => (HomeItemComponent(item, (item) => {
                         // @ts-ignore
-                        navigation.navigate(Detail,{id:item.id});
+                        navigation.navigate(Detail, {id: item.id});
                     }))}
                     keyExtractor={(item, index) => index.toString()}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}

@@ -20,10 +20,11 @@ export interface HomeModelIssueListItemListData {
 }
 
 export interface HomeModelIssueListItemList {
-    type: string;
-    data: HomeModelIssueListItemListData;
-    id: number;
-    adIndex: number;
+    type?: string;
+    data?: HomeModelIssueListItemListData;
+    id?: number;
+    adIndex?: number;
+    bannerList?: HomeModelIssueListItemList[];
 }
 
 export interface HomeModelIssueList {
