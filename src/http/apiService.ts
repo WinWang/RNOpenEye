@@ -12,7 +12,6 @@ function getHomeList(date: String) {
             url: baseUrl + "api/v2/feed",
             params: {"date": date, "num": 1},
             checkResultCode: false,
-            showLoading: true,
             checkLoginState: true,
         }
     )

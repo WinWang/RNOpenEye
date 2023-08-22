@@ -1,5 +1,4 @@
 import {Image, Pressable, StyleSheet, Text, View} from "react-native";
-import Gif from 'react-native-gif';
 
 import {
     VIEW_STATE_EMPTY,
@@ -52,8 +51,7 @@ const StateComponent: React.FC<{
                 retryCallback
             }>
                 <View style={appStyles.verticalCenterLayout}>
-                    <Gif source={require("../assets/image/loading.gif")}/>
-                    {/*{state === VIEW_STATE_LOADING ? (<FastImage source={image}/>) : (<Image source={image}/>)}*/}
+                    <Image source={image}/>
                     <Text>{tipsString}</Text>
                 </View>
             </Pressable>
