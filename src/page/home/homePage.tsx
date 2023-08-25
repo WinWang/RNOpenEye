@@ -4,7 +4,7 @@ import appStyles from "../../res/styles";
 import {useEffect, useState} from "react";
 import apiService from "../../http/apiService";
 import {HomeModelIssueListItemList} from "../../model/homeModel";
-import HomeItemComponent from "./homeItemComponent";
+import HomeItemComponent from "./component/homeItemComponent";
 import CommonFooter from "../../component/CommonFooter";
 import useRequestStatus from "../../hooks/useRequestStatus";
 import StateComponent from "../../component/StateComponent";
@@ -19,16 +19,18 @@ const HomePage = () => {
     const [nextUrl, setNextUrl] = useState("")
     const navigation = useNavigation()
     const [viewState, requestApi] = useRequestStatus()
+    const [handlerRefresh, setHandlerRefresh] = useState(false)
 
     useEffect(() => {
         loadNet()
-    }, [date])
+    }, [date, handlerRefresh])
 
     const onRefresh = async () => {
         if (date != "") {
             await setDataList([])
         }
         setDate("")
+        setHandlerRefresh(!handlerRefresh)
     }
 
     const loadMore = async () => {

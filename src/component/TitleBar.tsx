@@ -20,11 +20,13 @@ const TitleBar: React.FC<{ title: string }> = ({title}) => {
 };
 
 const styles = StyleSheet.create({
+
+    // borderBottomWidth: 1,
+    // borderBottomColor: '#ccc',
+
     container: {
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         backgroundColor: 'red',
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
         justifyContent: 'center',
         alignItems: 'center',
     },

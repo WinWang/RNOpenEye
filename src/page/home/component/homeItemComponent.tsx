@@ -1,7 +1,8 @@
 import React from "react";
-import {HomeModelIssueListItemList} from "../../model/homeModel";
+import {HomeModelIssueListItemList} from "../../../model/homeModel";
 import {Image, Pressable, StyleSheet, Text, View} from "react-native";
 import Swiper from 'react-native-swiper';
+import ImageRegexUtils from "../../../utils/ImageRegexUtils";
 
 /**
  * 首页条目的item
@@ -19,7 +20,7 @@ const HomeItemComponent = (item: HomeModelIssueListItemList, itemClick: (item: H
                     <View style={homeItemStyles.homeItemHeight}>
                         <Image
                             source={{uri: item.data?.cover.feed}}
-                            style={{flex: 1}}/>
+                            style={{flex: 1, borderRadius: 6}}/>
                         <Text style={homeItemStyles.homeItemTag}>{item.data?.category}</Text>
                     </View>
                     <View style={homeItemStyles.homeBottomWarpStyle}>
@@ -43,7 +44,7 @@ const HomeItemComponent = (item: HomeModelIssueListItemList, itemClick: (item: H
                 {item.bannerList?.map((banner, index) => (
                     <View key={index} style={homeItemStyles.slide}>
                         <Image
-                            source={{uri: "http://ali-img.kaiyanapp.com/953cccc56959e14666df3d1680a49aef.jpeg?imageMogr2/quality/60/format/jpg"}}
+                            source={{uri: ImageRegexUtils(banner.data?.image)}}
                             style={homeItemStyles.image}/>
                     </View>
                 ))}
