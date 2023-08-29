@@ -14,18 +14,18 @@ const CommonFooter: React.FC<LoadingProps> = ({loading}) => {
     if (!loading) return null;
     return (
         <View style={commonFooterStyle.footerWrapper}>
-            <Text style={{fontSize: 15, color: "#333"}}>加载中...</Text>
+            <Text style={{fontSize: 18, color: "#333"}}>加载中...</Text>
         </View>
 
     );
 }
 const commonFooterStyle = StyleSheet.create({
     footerWrapper: {
-        height: 30,
+        height: 60,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#2c22c"
+        backgroundColor: "#2c2c2c"
     }
 })
 

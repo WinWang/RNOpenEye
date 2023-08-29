@@ -1,5 +1,6 @@
 export interface homeModel {
     issueList: HomeModelIssueList[];
+    itemList: HomeModelIssueList[];
     nextPageUrl: string;
     nextPublishTime: number;
     newestIssueType: string;
@@ -16,6 +17,7 @@ export interface HomeModelIssueListItemListData {
     autoPlay: boolean;
     category: string;
     cover: CoverModel;
+    playUrl: string;
     author: AuthorModel;
 }
 

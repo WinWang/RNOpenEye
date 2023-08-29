@@ -2,6 +2,7 @@ import httpRequest from "./request"
 import {homeModel} from "../model/homeModel";
 import {FocusModel} from "../model/focusModel";
 import {categoryModel} from "../model/categoryModel";
+import {topicModel} from "../model/topicModel";
 
 let baseUrl = "https://baobab.kaiyanapp.com/";
 
@@ -35,7 +36,7 @@ function getFocusData(pageIndex: number = 0) {
  * 获取分类接口
  */
 function getCategoryData() {
-    return httpRequest.get<any>(
+    return httpRequest.get<categoryModel>(
         {
             url: baseUrl + "api/v4/categories",
             checkResultCode: false,
@@ -47,10 +48,24 @@ function getCategoryData() {
  * 获取专题接口
  */
 function getTopicData(start: number) {
-    return httpRequest.get<categoryModel>(
+    return httpRequest.get<topicModel>(
         {
             url: baseUrl + "api/v3/specialTopics",
             params: {"start": start},
+            checkResultCode: false,
+        }
+    )
+}
+
+/**
+ * 获取排行榜接口
+ * @param rankType  weekly 周排行       monthly 月排行        historical  总排行
+ */
+function getRankList(rankType: string) {
+    return httpRequest.get<homeModel>(
+        {
+            url: baseUrl + "api/v4/rankList/videos",
+            params: {"strategy": rankType},
             checkResultCode: false,
         }
     )
@@ -62,4 +77,5 @@ export default {
     getFocusData,
     getCategoryData,
     getTopicData,
+    getRankList,
 }

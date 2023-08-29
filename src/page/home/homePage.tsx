@@ -72,13 +72,13 @@ const HomePage = () => {
                     data={dataList}
                     renderItem={({item}) => (HomeItemComponent(item, (item) => {
                         // @ts-ignore
-                        navigation.navigate(Detail, {id: item.id});
+                        navigation.navigate(Detail, {id: item.id, videoUrl: item.data.playUrl});
                     }))}
                     keyExtractor={(item, index) => index.toString()}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
                     ListFooterComponent={<CommonFooter loading={loading}/>}
                     onEndReached={loadMore}
-                    onEndReachedThreshold={0.5}
+                    onEndReachedThreshold={0.01}
                 />
             </StateComponent>
         </View>
