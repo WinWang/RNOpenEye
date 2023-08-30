@@ -1,6 +1,7 @@
 export const color_white = '#ffffff';
 export const color_red = '#ff0000';
 export const color_black = '#000000';
+export const color_111 = '#111';
 export const color_222 = '#222';
 export const color_333 = '#333';
 export const color_444 = '#444';

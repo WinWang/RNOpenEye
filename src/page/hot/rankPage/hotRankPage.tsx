@@ -37,7 +37,7 @@ const HotRankPage: FC<{ rankType: string }> = ({rankType}) => {
                 data={dataList}
                 renderItem={({item}) => (HomeItemComponent(item, (item) => {
                     // @ts-ignore
-                    navigation.navigate(Detail, {id: item.id});
+                    navigation.navigate(Detail, {id: item.data.id, videoUrl: item.data.playUrl});
                 }))}
                 keyExtractor={(item, index) => index.toString()}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}

@@ -71,6 +71,20 @@ function getRankList(rankType: string) {
     )
 }
 
+/**
+ * 获取视频详情接口
+ * @param id
+ */
+function getRelationList(id: number) {
+    return httpRequest.get<homeModel>(
+        {
+            url: baseUrl + "api/v4/video/related",
+            params: {"id": id},
+            checkResultCode: false,
+        }
+    )
+}
+
 
 export default {
     getHomeList,
@@ -78,4 +92,5 @@ export default {
     getCategoryData,
     getTopicData,
     getRankList,
+    getRelationList,
 }

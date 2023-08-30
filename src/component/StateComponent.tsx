@@ -49,8 +49,8 @@ const StateComponent: React.FC<{
         return (
             <Pressable onPress={
                 retryCallback
-            }>
-                <View style={appStyles.verticalCenterLayout}>
+            } style={{flex: 1}}>
+                <View style={stateStyle.contentLayout}>
                     <Image source={image}/>
                     <Text>{tipsString}</Text>
                 </View>
@@ -71,7 +71,17 @@ const StateComponent: React.FC<{
     }
 }
 
-const stateStyle = StyleSheet.create({})
+const stateStyle = StyleSheet.create({
+
+    contentLayout: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1,
+    }
+
+})
 
 
 export default StateComponent
