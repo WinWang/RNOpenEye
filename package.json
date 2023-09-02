@@ -22,6 +22,7 @@
     "mobx-react-lite": "^4.0.3",
     "react": "18.2.0",
     "react-native": "0.72.3",
+    "react-native-collapsible-header-views": "^1.1.2",
     "react-native-elements": "^3.4.3",
     "react-native-gesture-handler": "^2.12.1",
     "react-native-infinite-scroll-view": "^0.4.5",

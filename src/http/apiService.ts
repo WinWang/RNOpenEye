@@ -3,6 +3,7 @@ import {homeModel} from "../model/homeModel";
 import {FocusModel} from "../model/focusModel";
 import {categoryModel} from "../model/categoryModel";
 import {topicModel} from "../model/topicModel";
+import {DEVICE_NUM, UUID} from "../constant/Constant";
 
 let baseUrl = "https://baobab.kaiyanapp.com/";
 
@@ -85,6 +86,26 @@ function getRelationList(id: number) {
     )
 }
 
+/**
+ * 获取分类详情接口
+ * @param id
+ * @param start
+ */
+function getCategoryDetailList(id: number, start: number) {
+    return httpRequest.get<homeModel>(
+        {
+            url: baseUrl + "api/v4/categories/videoList",
+            params: {
+                "id": id,
+                "start": start,
+                "udid": UUID,
+                deviceModel: DEVICE_NUM
+            },
+            checkResultCode: false,
+        }
+    )
+}
+
 
 export default {
     getHomeList,
@@ -93,4 +114,5 @@ export default {
     getTopicData,
     getRankList,
     getRelationList,
+    getCategoryDetailList,
 }

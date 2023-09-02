@@ -3506,6 +3506,11 @@ fast-levenshtein@^2.0.6:
   resolved "https://registry.npmmirror.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
   integrity sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==
 
+fast-memoize@^2.5.1:
+  version "2.5.2"
+  resolved "https://registry.npmmirror.com/fast-memoize/-/fast-memoize-2.5.2.tgz"
+  integrity sha512-Ue0LwpDYErFbmNnZSF0UH6eImUwDmogUO1jyE+JbN2gsQz/jICm1Ve7t9QT0rNSsfJt+Hs4/S3GnsDVjL4HVrw==
+
 fast-xml-parser@^4.0.12:
   version "4.2.7"
   resolved "https://registry.npmmirror.com/fast-xml-parser/-/fast-xml-parser-4.2.7.tgz"
@@ -5743,6 +5748,13 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.npmmirror.com/react-is/-/react-is-17.0.2.tgz"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-native-collapsible-header-views@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmmirror.com/react-native-collapsible-header-views/-/react-native-collapsible-header-views-1.1.2.tgz"
+  integrity sha512-HjhIKkJa3tkPC6i1G9hh9IdjiG4Df2aB3jU1z1RbNIWBqrCa83BfkstwtbzeAADJVkTBkLTldDd6EbMybbm0DA==
+  dependencies:
+    fast-memoize "^2.5.1"
 
 react-native-elements@^3.4.3:
   version "3.4.3"

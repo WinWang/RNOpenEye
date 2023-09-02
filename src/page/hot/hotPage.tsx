@@ -36,7 +36,7 @@ const HotPage = () => {
 
     return (
         <View style={appStyles.container}>
-            <TitleBar title="热门"/>
+            <TitleBar title="热门" showBackIcon={false}/>
             <View style={{flex: 1}}>
                 <TabView
                     lazy={true}

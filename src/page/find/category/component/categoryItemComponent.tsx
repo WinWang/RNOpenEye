@@ -1,15 +1,17 @@
-import {Image, StyleSheet, Text, View} from "react-native";
+import {Image, Pressable, StyleSheet, Text, View} from "react-native";
 import {categoryModelChild} from "../../../../model/categoryModel";
 import ImageRegexUtils from "../../../../utils/ImageRegexUtils";
 import {color_white} from "../../../../res/colors";
 
-const CategoryItemComponent = (item: categoryModelChild) => {
+const CategoryItemComponent = (item: categoryModelChild, itemClick?: (item: categoryModelChild) => void) => {
     return (
-        <View style={styles.imageTextWrapper}>
+        <Pressable style={styles.imageTextWrapper} onPress={() => {
+            itemClick?.(item)
+        }}>
             <Image source={{uri: ImageRegexUtils(item.bgPicture)}}
                    style={styles.imageStyle}/>
             <Text style={styles.titleStyle}>{item.name}</Text>
-        </View>
+        </Pressable>
     )
 }
 

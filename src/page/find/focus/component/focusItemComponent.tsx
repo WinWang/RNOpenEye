@@ -1,4 +1,4 @@
-import {FlatList, Image, StyleSheet, Text, View} from "react-native";
+import {FlatList, Image, Pressable, StyleSheet, Text, View} from "react-native";
 import {FocusModelItemList, FocusModelItemListDataItemList} from "../../../../model/focusModel";
 import {color_333, color_black, color_d5d5d5} from "../../../../res/colors";
 import React from "react";
@@ -9,7 +9,7 @@ import React from "react";
  * @param itemClick
  * @constructor
  */
-const FocusItemComponent = (item: FocusModelItemList, itemClick?: (item: FocusModelItemList) => void) => {
+const FocusItemComponent = (item: FocusModelItemList, itemClick?: (item: FocusModelItemListDataItemList) => void) => {
 
     return (
         <View style={styles.verticalLayout}>
@@ -26,6 +26,7 @@ const FocusItemComponent = (item: FocusModelItemList, itemClick?: (item: FocusMo
                 horizontal={true}
                 data={item.data.itemList}
                 renderItem={({item}) => FocusItemChildComponent(item, (item) => {
+                    itemClick?.(item)
                 })}
                 keyExtractor={(item, index) => index.toString()}
             />
@@ -42,10 +43,15 @@ const FocusItemComponent = (item: FocusModelItemList, itemClick?: (item: FocusMo
  */
 const FocusItemChildComponent = (item: FocusModelItemListDataItemList, itemClick: (item: FocusModelItemListDataItemList) => void) => {
     return (
-        <View style={styles.imageWrap}>
-            <Image source={{uri: item.data.cover.feed}} style={{height: 180, width: 320, borderRadius: 6}}/>
-            <Text style={styles.itemTag}>{item.data?.category}</Text>
-        </View>
+        <Pressable onPress={() => {
+            itemClick(item)
+        }}>
+            <View style={styles.imageWrap}>
+                <Image source={{uri: item.data.cover.feed}} style={{height: 180, width: 320, borderRadius: 6}}/>
+                <Text style={styles.itemTag}>{item.data?.category}</Text>
+            </View>
+        </Pressable>
+
     )
 }
 

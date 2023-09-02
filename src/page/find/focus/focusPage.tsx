@@ -7,6 +7,8 @@ import FocusItemComponent from "./component/focusItemComponent";
 import CommonFooter from "../../../component/CommonFooter";
 import useRequestStatus from "../../../hooks/useRequestStatus";
 import StateComponent from "../../../component/StateComponent";
+import {Detail} from "../../../route/router";
+import {useNavigation} from "@react-navigation/native";
 
 /**
  * 热门页面
@@ -19,6 +21,7 @@ const FocusPage = () => {
     const [handlerRefresh, setHandlerRefresh] = useState(false)
     const [viewState, requestApi] = useRequestStatus()
     const [dataList, setDataList] = useState<FocusModelItemList[]>([])
+    const navigation = useNavigation()
 
     useEffect(() => {
         loadNet()
@@ -50,7 +53,8 @@ const FocusPage = () => {
                 <FlatList
                     data={dataList}
                     renderItem={({item}) => FocusItemComponent(item, (item) => {
-
+                        // @ts-ignore
+                        navigation.navigate(Detail, {id: item.data.id, videoUrl: item.data.playUrl});
                     })}
                     keyExtractor={(item, index) => index.toString()}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}

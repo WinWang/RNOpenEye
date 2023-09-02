@@ -66,7 +66,7 @@ const HomePage = () => {
 
     return (
         <View style={appStyles.container}>
-            <TitleBar title="首页"/>
+            <TitleBar title="首页" showBackIcon={false}/>
             <StateComponent loadingState={viewState} retryCallback={onRefresh}>
                 <FlatList
                     data={dataList}

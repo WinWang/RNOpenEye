@@ -4,9 +4,10 @@
 import {CardStyleInterpolators, createStackNavigator, StackNavigationProp} from "@react-navigation/stack"
 import SplashPage from '../page/splashPage'
 import MainPage from "../page/mainPage"
-import DetailPage from "../page/detail/detailPage";
+import DetailPage from "../page/videoDetail/detailPage";
 import FindPage from "../page/find/findPage";
 import {RouteProp} from "@react-navigation/native";
+import CategoryDetailPage from "../page/categoryDetail/categoryDetailPage";
 
 /***路由名称**/
 const Splash = "splash"
@@ -16,6 +17,7 @@ const Find = "find"
 const Hot = "hot"
 const Mine = "mine"
 const Detail = "detail"
+const CategoryDetail = "categoryDetail"
 
 
 /***路由参数**/
@@ -23,6 +25,7 @@ export type RootStackParamList = {
     [Splash]: undefined;
     [Main]: undefined;
     [Detail]: { id: number, videoUrl: string };
+    [CategoryDetail]: { id: number,headImageUrl:string};
     [Find]: undefined
 };
 
@@ -93,9 +96,10 @@ const AppRouter = () => {
             <Stack.Screen name={Main} component={MainPage}/>
             <Stack.Screen name={Detail} component={DetailPage}/>
             <Stack.Screen name={Find} component={FindPage}/>
+            <Stack.Screen name={CategoryDetail} component={CategoryDetailPage}/>
         </Stack.Navigator>
     );
 }
 /******路由表注册**************************************/
 
-export {AppRouter, Splash, Main, Home, Find, Hot, Mine, Detail}
+export {AppRouter, Splash, Main, Home, Find, Hot, Mine, Detail,CategoryDetail}

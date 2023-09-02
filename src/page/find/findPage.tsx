@@ -23,7 +23,7 @@ const FindPage = () => {
 
     return (
         <View style={appStyles.container}>
-            <TitleBar title="发现"/>
+            <TitleBar title="发现" showBackIcon={false}/>
             <View style={{flex: 1}}>
                 <TabView
                     lazy={true}
