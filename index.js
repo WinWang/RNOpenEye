@@ -1,5 +1,6 @@
 /**
  * @format
+ * Mobile-specific entry point to React Native
  */
 
 import {AppRegistry} from 'react-native';

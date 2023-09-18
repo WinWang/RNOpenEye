@@ -6,14 +6,14 @@
  */
 
 import React, {useEffect} from 'react';
-import {StyleSheet, useColorScheme,} from 'react-native';
+import {useColorScheme,} from 'react-native';
 
 import {Colors,} from 'react-native/Libraries/NewAppScreen';
-import Loading from "./src/component/Loading";
+import Loading from "./mobile/component/Loading";
 import {NavigationContainer} from "@react-navigation/native";
-import {AppRouter} from "./src/route/router";
+import {AppRouter} from "./mobile/route/router";
 import Toast from "react-native-toast-message";
-import StatusBarManager from "./src/utils/StatusBarManager";
+import StatusBarManager from "./mobile/utils/StatusBarManager";
 
 function App(): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
