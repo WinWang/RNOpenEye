@@ -57,7 +57,7 @@ const httpRequest = new HttpRequest({
             //优先执行自己的请求响应拦截器，在执行通用请求request的
             globalStore.setLoading(false)
             LogUtils.info('网络响应Response>>>:', `${response.status}`);
-            LogUtils.info('网络响应Response>>>:', `\n${JSON.stringify(response.data, null, 2)}`);
+            LogUtils.info('网络响应Response>>>:', `${JSON.stringify(response.data, null, 2)}`);
             if (response.status === 200) {
                 // @ts-ignore
                 const checkResultCode = response.config.checkResultCode

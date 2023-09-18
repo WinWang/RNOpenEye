@@ -4,6 +4,7 @@ import {FocusModel} from "../model/focusModel";
 import {categoryModel} from "../model/categoryModel";
 import {topicModel} from "../model/topicModel";
 import {DEVICE_NUM, UUID} from "../constant/Constant";
+import {TopicDetailModel} from "../model/topicDetailModel";
 
 let baseUrl = "https://baobab.kaiyanapp.com/";
 
@@ -107,6 +108,20 @@ function getCategoryDetailList(id: number, start: number) {
 }
 
 
+/**
+ *获取主题详情接口
+ * @param id
+ */
+function getTopicDetailList(id: number) {
+    return httpRequest.get<TopicDetailModel>(
+        {
+            url: baseUrl + "api/v3/lightTopics/internal/" + id,
+            checkResultCode: false
+        }
+    )
+}
+
+
 export default {
     getHomeList,
     getFocusData,
@@ -115,4 +130,5 @@ export default {
     getRankList,
     getRelationList,
     getCategoryDetailList,
+    getTopicDetailList
 }

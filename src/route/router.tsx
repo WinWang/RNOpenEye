@@ -8,16 +8,18 @@ import DetailPage from "../page/videoDetail/detailPage";
 import FindPage from "../page/find/findPage";
 import {RouteProp} from "@react-navigation/native";
 import CategoryDetailPage from "../page/categoryDetail/categoryDetailPage";
+import TopicDetailPage from "../page/topicDetail/topicDetailPage";
 
 /***路由名称**/
-const Splash = "splash"
-const Main = "main"
-const Home = "home"
-const Find = "find"
-const Hot = "hot"
-const Mine = "mine"
-const Detail = "detail"
-const CategoryDetail = "categoryDetail"
+export const Splash = "splash"
+export const Main = "main"
+export const Home = "home"
+export const Find = "find"
+export const Hot = "hot"
+export const Mine = "mine"
+export const Detail = "detail"
+export const CategoryDetail = "categoryDetail"
+export const TopicDetail = "topicDetail"
 
 
 /***路由参数**/
@@ -25,11 +27,12 @@ export type RootStackParamList = {
     [Splash]: undefined;
     [Main]: undefined;
     [Detail]: { id: number, videoUrl: string };
-    [CategoryDetail]: { id: number,headImageUrl:string};
-    [Find]: undefined
+    [CategoryDetail]: { id: number, headImageUrl: string, name: string };
+    [Find]: undefined;
+    [TopicDetail]: { id: number }
 };
 
-type ScreenProps<RouteName extends keyof RootStackParamList> = {
+export type NavigateProps<RouteName extends keyof RootStackParamList> = {
     route: RouteProp<RootStackParamList, RouteName>;
     navigation: StackNavigationProp<RootStackParamList, RouteName>;
 };
@@ -88,7 +91,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 /******路由表注册**************************************/
 const AppRouter = () => {
     return (
-        <Stack.Navigator initialRouteName={Main} screenOptions={{
+        <Stack.Navigator initialRouteName={Splash} screenOptions={{
             headerShown: false,
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
         }}>
@@ -97,9 +100,12 @@ const AppRouter = () => {
             <Stack.Screen name={Detail} component={DetailPage}/>
             <Stack.Screen name={Find} component={FindPage}/>
             <Stack.Screen name={CategoryDetail} component={CategoryDetailPage}/>
+            <Stack.Screen name={TopicDetail} component={TopicDetailPage}/>
         </Stack.Navigator>
     );
 }
 /******路由表注册**************************************/
 
-export {AppRouter, Splash, Main, Home, Find, Hot, Mine, Detail,CategoryDetail}
+export {
+    AppRouter
+}

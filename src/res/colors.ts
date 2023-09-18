@@ -31,3 +31,4 @@ export const color_darkgoldenrod = '#b8860b';
 export const color_brown = '#a52a2a';
 export const color_firebrick = '#b22222';
 export const color_crimson = '#dc143c';
+export const color_d81e06 = '#d81e06';

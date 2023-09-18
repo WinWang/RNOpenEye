@@ -1,12 +1,17 @@
 import {TopicModelItemList} from "../../../../model/topicModel";
-import {Image, StyleSheet, Text, View} from "react-native";
+import {Pressable, StyleSheet, View} from "react-native";
 import ImageRegexUtils from "../../../../utils/ImageRegexUtils";
+import NetworkImage from "../../../../component/NetworkImage";
 
-const TopicItemComponent = (item: TopicModelItemList) => {
+const TopicItemComponent = (item: TopicModelItemList, onItemClick?: (item: TopicModelItemList) => void) => {
     return (
         <View style={styles.imageWrapper}>
-            <Image source={{uri: ImageRegexUtils(item.data.image)}}
-                   style={styles.imageStyle}/>
+            <Pressable onPress={() => {
+                onItemClick?.(item)
+            }} style={styles.clickStyle}>
+                <NetworkImage source={{uri: ImageRegexUtils(item.data.image)}}
+                              style={styles.imageStyle}/>
+            </Pressable>
         </View>
     )
 }
@@ -14,7 +19,12 @@ const TopicItemComponent = (item: TopicModelItemList) => {
 const styles = StyleSheet.create({
     imageWrapper: {
         height: 200,
+        width: "100%"
+    },
+
+    clickStyle: {
         width: "100%",
+        height: "100%",
         flex: 1,
         display: "flex",
         flexDirection: "row",

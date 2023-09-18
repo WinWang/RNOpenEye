@@ -1,26 +1,23 @@
-import {Animated, Image, Platform, StatusBar, StyleSheet, View} from "react-native";
+import {Animated, Image, Platform, Pressable, StatusBar, StyleSheet, Text, View} from "react-native";
 import {CollapsibleHeaderFlatList, CollapsibleHeaderProps} from 'react-native-collapsible-header-views';
 
 import appStyles from "../../res/styles";
-import {RouteProp, useNavigation} from "@react-navigation/native";
-import {Detail, RootStackParamList} from "../../route/router";
+import {useNavigation} from "@react-navigation/native";
+import {Detail, NavigateProps} from "../../route/router";
 import React, {useEffect, useState} from "react";
 import useRequestStatus from "../../hooks/useRequestStatus";
 import apiService from "../../http/apiService";
 import {HomeModelIssueListItemList} from "../../model/homeModel";
 import ImageRegexUtils from "../../utils/ImageRegexUtils";
 import HomeItemComponent from "../home/component/homeItemComponent";
-
-type CategoryDetailScreenProps = {
-    route: RouteProp<RootStackParamList, 'categoryDetail'>;
-};
+import {color_white} from "../../res/colors";
 
 /**
  * 分类详情页面
  * @param route
  * @constructor
  */
-const CategoryDetailPage = ({route}: CategoryDetailScreenProps) => {
+const CategoryDetailPage = ({route}: NavigateProps<"categoryDetail">) => {
     const [dataList, setDataList] = useState<HomeModelIssueListItemList[]>([])
     const [pageIndex, setPageIndex] = useState(0)
     const [id, setId] = useState(route.params.id)
@@ -87,15 +84,24 @@ const CategoryDetailPage = ({route}: CategoryDetailScreenProps) => {
                 }}>
                     <View style={{height: statusBarHeight}}/>
                     <View style={{
-                        flex: 1, justifyContent: 'center',
+                        flex: 1,
+                        justifyContent: 'center',
                         alignItems: 'center',
                     }}>
-                        <Image source={require('../../assets/image/ic_action_back.png')} style={{
-                            position: 'absolute',
-                            left: 10,
-                            width: 20,
-                            height: 20
-                        }}/>
+                        <Pressable
+                            onPress={() => {
+                                navigation.goBack()
+                            }}
+                            style={{
+                                position: 'absolute',
+                                left: 10,
+                                width: 20,
+                                height: 20
+                            }}>
+                            <Image source={require('../../assets/image/ic_action_back.png')}
+                                   style={{width: 20, height: 20}}/>
+                        </Pressable>
+                        <Text style={{color: color_white, fontSize: 17, fontWeight: "bold"}}>{route.params.name}</Text>
                     </View>
                 </View>
             </Animated.View>
@@ -113,8 +119,8 @@ const CategoryDetailPage = ({route}: CategoryDetailScreenProps) => {
                 headerHeight={300}
                 keyExtractor={(item, index) => index.toString()}
                 headerContainerBackgroundColor={'red'}
-                disableHeaderSnap={false}
-                clipHeader={false}
+                disableHeaderSnap={true}
+                clipHeader={true}
                 onScroll={handleScroll}
             />
 

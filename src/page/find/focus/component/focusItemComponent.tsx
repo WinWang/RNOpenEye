@@ -1,7 +1,8 @@
-import {FlatList, Image, Pressable, StyleSheet, Text, View} from "react-native";
+import {FlatList, Pressable, StyleSheet, Text, View} from "react-native";
 import {FocusModelItemList, FocusModelItemListDataItemList} from "../../../../model/focusModel";
 import {color_333, color_black, color_d5d5d5} from "../../../../res/colors";
 import React from "react";
+import NetworkImage from "../../../../component/NetworkImage";
 
 /**
  * 关注子布局嵌套Item
@@ -14,7 +15,8 @@ const FocusItemComponent = (item: FocusModelItemList, itemClick?: (item: FocusMo
     return (
         <View style={styles.verticalLayout}>
             <View style={styles.horizontalLayout}>
-                <Image source={{uri: item.data?.header?.icon}} style={{height: 50, width: 50, borderRadius: 25}}/>
+                <NetworkImage source={{uri: item.data?.header?.icon}}
+                              style={{height: 50, width: 50, borderRadius: 25}}/>
                 <View style={styles.verticalLayout}>
                     <Text numberOfLines={1} ellipsizeMode={"tail"}
                           style={styles.titleStyle}>{item.data?.header?.title}</Text>
@@ -47,7 +49,7 @@ const FocusItemChildComponent = (item: FocusModelItemListDataItemList, itemClick
             itemClick(item)
         }}>
             <View style={styles.imageWrap}>
-                <Image source={{uri: item.data.cover.feed}} style={{height: 180, width: 320, borderRadius: 6}}/>
+                <NetworkImage source={{uri: item.data.cover.feed}} style={{height: 180, width: 320, borderRadius: 6}}/>
                 <Text style={styles.itemTag}>{item.data?.category}</Text>
             </View>
         </Pressable>

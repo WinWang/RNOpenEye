@@ -34,7 +34,12 @@ const CategoryPage = () => {
                     data={categoryList}
                     renderItem={({item}) => CategoryItemComponent(item, (item) => {
                         // @ts-ignore
-                        navigation.navigate(CategoryDetail, {id: item.id, headImageUrl: item.headerImage});
+                        navigation.navigate(CategoryDetail,
+                            {
+                                id: item.id,
+                                headImageUrl: item.headerImage,
+                                name: item.name
+                            });
                     })}
                     keyExtractor={(item, index) => index.toString()}
                     numColumns={2}

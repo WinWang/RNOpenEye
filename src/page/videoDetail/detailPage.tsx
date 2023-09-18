@@ -2,22 +2,39 @@ import {StyleSheet, View} from "react-native";
 import appStyles from "../../res/styles";
 import Video from 'react-native-video';
 import TitleBar from "../../component/TitleBar";
-import {RouteProp} from "@react-navigation/native";
-import {useEffect, useState} from "react";
-import {RootStackParamList} from "../../route/router";
+import {useState} from "react";
+import {NavigateProps} from "../../route/router";
 import DetailListComponent from "./component/detailListComponent";
+import LogUtils from "../../utils/LogUtils";
+import Orientation from "react-native-orientation-locker";
 
-type DetailScreenProps = {
-    route: RouteProp<RootStackParamList, 'detail'>;
-};
 
-const DetailPage = ({route}: DetailScreenProps) => {
+const DetailPage = ({route}: NavigateProps<"detail">) => {
     const [id, setId] = useState(route.params.id)
     const [videoUrl, setVideoUrl] = useState(route.params.videoUrl)
 
-    useEffect(() => {
+    // 全屏进入前回调
+    const onFullscreenPlayerWillPresent = () => {
+        LogUtils.info('进入全屏模式前');
+        Orientation.lockToLandscape();
+    };
 
-    }, [])
+    // 全屏进入后回调
+    const onFullscreenPlayerDidPresent = () => {
+        LogUtils.info('已进入全屏模式');
+
+    };
+
+    // 退出全屏前回调
+    const onFullscreenPlayerWillDismiss = () => {
+        LogUtils.info('退出全屏模式前');
+        Orientation.lockToPortrait();
+    };
+
+    // 退出全屏后回调
+    const onFullscreenPlayerDidDismiss = () => {
+        LogUtils.info('已退出全屏模式');
+    };
 
     return (
         <View style={appStyles.container}>
@@ -26,6 +43,10 @@ const DetailPage = ({route}: DetailScreenProps) => {
                 source={{uri: videoUrl}}
                 controls={true}
                 style={styles.video}
+                onFullscreenPlayerWillPresent={onFullscreenPlayerWillPresent}
+                onFullscreenPlayerDidPresent={onFullscreenPlayerDidPresent}
+                onFullscreenPlayerWillDismiss={onFullscreenPlayerWillDismiss}
+                onFullscreenPlayerDidDismiss={onFullscreenPlayerDidDismiss}
             />
             <DetailListComponent id={id}/>
         </View>

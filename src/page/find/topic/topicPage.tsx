@@ -7,8 +7,11 @@ import appStyles from "../../../res/styles";
 import CommonFooter from "../../../component/CommonFooter";
 import StateComponent from "../../../component/StateComponent";
 import TopicItemComponent from "./component/topicItemComponent";
+import {useNavigation} from "@react-navigation/native";
+import {TopicDetail} from "../../../route/router";
 
 const TopicPage = () => {
+    const navigation = useNavigation()
     const [refreshing, setRefreshing] = useState(false);
     const [loading, setLoading] = useState(false);
     const [pageIndex, setPageIndex] = useState(0)
@@ -46,7 +49,10 @@ const TopicPage = () => {
             <View style={appStyles.verticalCenterLayout}>
                 <FlatList
                     data={dataList}
-                    renderItem={({item}) => TopicItemComponent(item)}
+                    renderItem={({item}) => TopicItemComponent(item, (item) => {
+                        // @ts-ignore
+                        navigation.navigate(TopicDetail, {id: item.data.id})
+                    })}
                     keyExtractor={(item, index) => index.toString()}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
                     ListFooterComponent={<CommonFooter loading={loading}/>}

@@ -24,7 +24,7 @@ const TitleBar: React.FC<{
         <View style={[styles.container, {height: statusBarHeight + 40}]}>
             <StatusBar translucent backgroundColor="transparent"/>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>{title}</Text>
+                <Text ellipsizeMode={"tail"} numberOfLines={1} style={styles.title}>{title}</Text>
                 <Pressable style={styles.backIcon} onPress={() => {
                     if (onBackPress != null) {
                         onBackPress?.()

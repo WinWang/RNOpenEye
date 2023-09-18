@@ -6,6 +6,7 @@ import FindPage from "./find/findPage";
 import {Find, Home, Hot, Mine} from '../route/router'
 import HotPage from "./hot/hotPage";
 import MinePage from "./mine/minePage";
+import {color_d81e06} from "../res/colors";
 
 const MainPage = () => {
     const Tab = createBottomTabNavigator();
@@ -19,19 +20,19 @@ const MainPage = () => {
                         if (route.name === Home) {
                             iconName = focused ? require('../assets/image/icon-home-sel.png') : require('../assets/image/icon-home-nor.png')
                         } else if (route.name === Find) {
-                            iconName = focused ? require('../assets/image/icon-like-sel.png') : require('../assets/image/icon-like-nor.png')
+                            iconName = focused ? require('../assets/image/icon-find-sel.png') : require('../assets/image/icon-find-nor.png')
                         } else if (route.name === Hot) {
-                            iconName = focused ? require('../assets/image/icon-pro-sel.png') : require('../assets/image/icon-pro-nor.png')
+                            iconName = focused ? require('../assets/image/icon-hot-sel.png') : require('../assets/image/icon-hot-nor.png')
                         } else {
-                            iconName = focused ? require('../assets/image/icon-site-sel.png') : require('../assets/image/icon-site-nor.png')
+                            iconName = focused ? require('../assets/image/icon-mine-sel.png') : require('../assets/image/icon-mine-nor.png')
                         }
                         return <Image source={iconName} style={{
                             width: size,
                             height: size,
-                            tintColor: focused ? Colors.red : Colors.gray
+                            tintColor: focused ? color_d81e06 : Colors.gray
                         }}/>;
                     },
-                    tabBarActiveTintColor: 'tomato',
+                    tabBarActiveTintColor: color_d81e06,
                     headerShown: false
                 }
             )}

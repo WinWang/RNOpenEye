@@ -1,8 +1,9 @@
 import React from "react";
 import {HomeModelIssueListItemList} from "../../../model/homeModel";
-import {Image, Pressable, StyleSheet, Text, View} from "react-native";
+import {Pressable, StyleSheet, Text, View} from "react-native";
 import Swiper from 'react-native-swiper';
 import ImageRegexUtils from "../../../utils/ImageRegexUtils";
+import NetworkImage from "../../../component/NetworkImage";
 
 /**
  * 首页条目的item
@@ -18,14 +19,14 @@ const HomeItemComponent = (item: HomeModelIssueListItemList, itemClick: (item: H
             }}>
                 <View style={homeItemStyles.homeVerticalLayout}>
                     <View style={homeItemStyles.homeItemHeight}>
-                        <Image
+                        <NetworkImage
                             source={{uri: item.data?.cover.feed}}
                             style={{flex: 1, borderRadius: 6}}/>
                         <Text style={homeItemStyles.homeItemTag}>{item.data?.category}</Text>
                     </View>
                     <View style={homeItemStyles.homeBottomWarpStyle}>
-                        <Image source={{uri: item.data?.author.icon}}
-                               style={{height: 40, width: 40, borderRadius: 20}}/>
+                        <NetworkImage source={{uri: item.data?.author.icon}}
+                                      style={{height: 40, width: 40, borderRadius: 20}}/>
                         <View style={homeItemStyles.homeBottomTextWrap}>
                             <Text numberOfLines={1} ellipsizeMode={"tail"}
                                   style={homeItemStyles.homeTitleStyle}>{item.data?.author.name}</Text>
@@ -43,7 +44,7 @@ const HomeItemComponent = (item: HomeModelIssueListItemList, itemClick: (item: H
                     activeDotStyle={homeItemStyles.activeDotStyle}>
                 {item.bannerList?.map((banner, index) => (
                     <View key={index} style={homeItemStyles.slide}>
-                        <Image
+                        <NetworkImage
                             source={{uri: ImageRegexUtils(banner.data?.image)}}
                             style={homeItemStyles.image}/>
                     </View>
@@ -110,6 +111,7 @@ const homeItemStyles = StyleSheet.create({
 
     wrapper: {
         height: 200,
+        width: "100%",
     },
     slide: {
         flex: 1,

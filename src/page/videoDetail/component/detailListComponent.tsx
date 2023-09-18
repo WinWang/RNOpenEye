@@ -6,7 +6,11 @@ import {HomeModelIssueListItemList} from "../../../model/homeModel";
 import useRequestStatus from "../../../hooks/useRequestStatus";
 import StateComponent from "../../../component/StateComponent";
 
-
+/**
+ * 详情列表组件
+ * @param id
+ * @constructor
+ */
 const DetailListComponent: FC<{ id: number }> = ({id}) => {
 
     const [dataList, setDataList] = useState<HomeModelIssueListItemList[]>([])
