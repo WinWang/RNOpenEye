@@ -7,10 +7,7 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest",
-    "web": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "test": "jest"
 
   },
   "dependencies": {
@@ -42,9 +39,7 @@
     "react-native-swiper": "^1.6.0",
     "react-native-tab-view": "^3.5.2",
     "react-native-toast-message": "^2.1.6",
-    "react-native-video": "^6.0.0-alpha.7",
-    "react-native-web": "^0.19.8",
-    "react-scripts": "^5.0.1"
+    "react-native-video": "^6.0.0-alpha.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
