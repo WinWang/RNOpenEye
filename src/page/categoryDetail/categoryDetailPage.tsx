@@ -11,6 +11,7 @@ import {HomeModelIssueListItemList} from "../../model/homeModel";
 import ImageRegexUtils from "../../utils/ImageRegexUtils";
 import HomeItemComponent from "../home/component/homeItemComponent";
 import {color_white} from "../../res/colors";
+import StateComponent from "../../component/StateComponent";
 
 /**
  * 分类详情页面
@@ -65,66 +66,72 @@ const CategoryDetailPage = ({route}: NavigateProps<"categoryDetail">) => {
     }
 
     return (
-        <View style={appStyles.container}>
-            <Animated.View style={{
-                opacity: headerOpacity,
-                height: 90,
-                width: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                zIndex: 100
-            }}>
-                <View style={{
+        <StateComponent loadingState={viewState} retryCallback={loadNet}>
+            <View style={appStyles.container}>
+                <Animated.View style={{
+                    opacity: headerOpacity,
                     height: 90,
                     width: "100%",
-                    backgroundColor: 'red',
-                    display: 'flex',
-                    flexDirection: 'column',
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    zIndex: 100
                 }}>
-                    <View style={{height: statusBarHeight}}/>
                     <View style={{
-                        flex: 1,
-                        justifyContent: 'center',
-                        alignItems: 'center',
+                        height: 90,
+                        width: "100%",
+                        backgroundColor: 'red',
+                        display: 'flex',
+                        flexDirection: 'column',
                     }}>
-                        <Pressable
-                            onPress={() => {
-                                navigation.goBack()
-                            }}
-                            style={{
-                                position: 'absolute',
-                                left: 10,
-                                width: 20,
-                                height: 20
-                            }}>
-                            <Image source={require('../../assets/image/ic_action_back.png')}
-                                   style={{width: 20, height: 20}}/>
-                        </Pressable>
-                        <Text style={{color: color_white, fontSize: 17, fontWeight: "bold"}}>{route.params.name}</Text>
+                        <View style={{height: statusBarHeight}}/>
+                        <View style={{
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}>
+                            <Pressable
+                                onPress={() => {
+                                    navigation.goBack()
+                                }}
+                                style={{
+                                    position: 'absolute',
+                                    left: 10,
+                                    width: 20,
+                                    height: 20
+                                }}>
+                                <Image source={require('../../assets/image/ic_action_back.png')}
+                                       style={{width: 20, height: 20}}/>
+                            </Pressable>
+                            <Text style={{
+                                color: color_white,
+                                fontSize: 17,
+                                fontWeight: "bold"
+                            }}>{route.params.name}</Text>
+                        </View>
                     </View>
-                </View>
-            </Animated.View>
-            <CollapsibleHeaderFlatList
-                CollapsibleHeaderComponent={(props) => {
-                    return (
-                        <HeaderView {...props}/>
-                    )
-                }}
-                data={dataList}
-                renderItem={({item}) => HomeItemComponent(item, (item) => {
-                    // @ts-ignore
-                    navigation.navigate(Detail, {id: item.data.id, videoUrl: item.data.playUrl});
-                })}
-                headerHeight={300}
-                keyExtractor={(item, index) => index.toString()}
-                headerContainerBackgroundColor={'red'}
-                disableHeaderSnap={true}
-                clipHeader={true}
-                onScroll={handleScroll}
-            />
+                </Animated.View>
+                <CollapsibleHeaderFlatList
+                    CollapsibleHeaderComponent={(props) => {
+                        return (
+                            <HeaderView {...props}/>
+                        )
+                    }}
+                    data={dataList}
+                    renderItem={({item}) => HomeItemComponent(item, (item) => {
+                        // @ts-ignore
+                        navigation.navigate(Detail, {id: item.data.id, videoUrl: item.data.playUrl});
+                    })}
+                    headerHeight={300}
+                    keyExtractor={(item, index) => index.toString()}
+                    headerContainerBackgroundColor={'red'}
+                    disableHeaderSnap={true}
+                    clipHeader={true}
+                    onScroll={handleScroll}
+                />
 
-        </View>
+            </View>
+        </StateComponent>
     )
 }
 

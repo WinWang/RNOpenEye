@@ -10,6 +10,7 @@ import useRequestStatus from "../../hooks/useRequestStatus";
 import StateComponent from "../../component/StateComponent";
 import {useNavigation} from "@react-navigation/native";
 import {Detail} from "../../route/router";
+import HomeSkeletonComponent from "./component/homeSkeletonComponent";
 
 const HomePage = () => {
     const [dataList, setDataList] = useState<HomeModelIssueListItemList[]>([])
@@ -67,7 +68,8 @@ const HomePage = () => {
     return (
         <View style={appStyles.container}>
             <TitleBar title="首页" showBackIcon={false}/>
-            <StateComponent loadingState={viewState} retryCallback={onRefresh}>
+            <StateComponent loadingState={viewState} retryCallback={onRefresh}
+                            skeletonChildren={HomeSkeletonComponent()}>
                 <FlatList
                     data={dataList}
                     renderItem={({item}) => (HomeItemComponent(item, (item) => {

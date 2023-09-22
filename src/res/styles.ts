@@ -20,6 +20,11 @@ const appStyles = StyleSheet.create({
         width: "100%"
     },
 
+    verticalLayoutWrap: {
+        display: "flex",
+        flexDirection: "column",
+    },
+
     verticalLayout5Padding: {
         display: "flex",
         flexDirection: "column",
@@ -39,6 +44,14 @@ const appStyles = StyleSheet.create({
     horizontalLayout: {
         display: "flex",
         flexDirection: "row",
+        width: "100%",
+    },
+
+    horizontalLayoutCenter: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
         width: "100%",
     },
 

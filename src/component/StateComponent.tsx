@@ -7,8 +7,8 @@ import {
     VIEW_STATE_NETWORK_ERROR,
     VIEW_STATE_SUCCESS
 } from "../constant/ViewStateConstant";
-import appStyles from "../res/styles";
 import React from "react";
+import LogUtils from "../utils/LogUtils";
 
 const StateComponent: React.FC<{
     //加载类型
@@ -21,9 +21,11 @@ const StateComponent: React.FC<{
     listSize?: number
     //重试按钮
     retryCallback?: () => void
+    //骨架屏子控件
+    skeletonChildren?: React.ReactNode
     //包裹子控件
     children: React.ReactNode;
-}> = ({loadingState, useSkeleton, customSkeleton, listSize, retryCallback, children}) => {
+}> = ({loadingState, useSkeleton, customSkeleton, listSize, retryCallback, skeletonChildren, children}) => {
 
     const commonContentView = (state: string) => {
         let image;
@@ -31,7 +33,7 @@ const StateComponent: React.FC<{
         switch (state) {
             case VIEW_STATE_LOADING:
                 image = require("../assets/image/loading.gif")
-                tipsString = ""
+                tipsString = "";
                 break
             case VIEW_STATE_ERROR:
                 image = require("../assets/image/common_empty_content.png")
@@ -46,16 +48,21 @@ const StateComponent: React.FC<{
                 tipsString = "暂无数据"
                 break
         }
-        return (
-            <Pressable onPress={
-                retryCallback
-            } style={{flex: 1}}>
-                <View style={stateStyle.contentLayout}>
-                    <Image source={image}/>
-                    <Text>{tipsString}</Text>
-                </View>
-            </Pressable>
-        )
+        if (skeletonChildren && loadingState === VIEW_STATE_LOADING) {
+            LogUtils.error("skeletonChildren", skeletonChildren)
+            return <>{skeletonChildren}</>
+        } else {
+            return (
+                <Pressable onPress={
+                    retryCallback
+                } style={{flex: 1}}>
+                    <View style={stateStyle.contentLayout}>
+                        <Image style={{width: 80, height: 120}} source={image}/>
+                        <Text>{tipsString}</Text>
+                    </View>
+                </Pressable>
+            )
+        }
     }
 
     if (loadingState === VIEW_STATE_SUCCESS) {

@@ -3,7 +3,7 @@ import appStyles from "../../res/styles";
 
 const MinePage = () => {
     return (
-        <View style={appStyles.verticalLayout}>
+        <View style={appStyles.container}>
             <View style={styles.imageWrapper}>
                 <Image source={require("../../assets/image/back_mine.png")} style={styles.imageStyle}/>
                 <Image source={require("../../assets/image/default_avatar.jpeg")}

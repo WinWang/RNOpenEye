@@ -1,4 +1,4 @@
-import {FlatList, View, ViewToken} from "react-native";
+import {FlatList, View, ViewComponent, ViewToken} from "react-native";
 import {NavigateProps} from "../../route/router";
 import {useCallback, useEffect, useRef, useState} from "react";
 import appStyles from "../../res/styles";
@@ -9,6 +9,7 @@ import {TopicDetailModel} from "../../model/topicDetailModel";
 import TopicHeaderComponent from "./component/topicHeaderComponent";
 import TopicItemDetailComponent from "./component/topicItemDetailComponent";
 import LogUtils from "../../utils/LogUtils";
+import StateComponent from "../../component/StateComponent";
 
 /**
  * 话题详情页面
@@ -57,19 +58,21 @@ const TopicDetailPage = ({route}: NavigateProps<"topicDetail">) => {
     }, []);
 
     return (
-        <View style={appStyles.verticalLayout}>
+        <View style={appStyles.container}>
             <TitleBar title={resultData.brief}/>
-            <FlatList
-                data={resultData.itemList}
-                renderItem={({item, index}) => TopicItemDetailComponent(item, index, playIndex, () => {
-                    LogUtils.debug("点击了" + index)
-                    setPlayIndex(index)
-                })}
-                ListHeaderComponent={TopicHeaderComponent(resultData)}
-                keyExtractor={(item, index) => index.toString()}
-                onViewableItemsChanged={onViewableItemsChanged}
-                viewabilityConfig={viewAbilityConfig.current}
-            />
+            <StateComponent loadingState={viewState} retryCallback={loadNet}>
+                <FlatList
+                    data={resultData.itemList}
+                    renderItem={({item, index}) => TopicItemDetailComponent(item, index, playIndex, () => {
+                        LogUtils.debug("点击了" + index)
+                        setPlayIndex(index)
+                    })}
+                    ListHeaderComponent={TopicHeaderComponent(resultData)}
+                    keyExtractor={(item, index) => index.toString()}
+                    onViewableItemsChanged={onViewableItemsChanged}
+                    viewabilityConfig={viewAbilityConfig.current}
+                />
+            </StateComponent>
         </View>
     )
 }

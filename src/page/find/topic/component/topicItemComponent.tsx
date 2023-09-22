@@ -18,7 +18,7 @@ const TopicItemComponent = (item: TopicModelItemList, onItemClick?: (item: Topic
 
 const styles = StyleSheet.create({
     imageWrapper: {
-        height: 200,
+        height: 220,
         width: "100%"
     },
 
