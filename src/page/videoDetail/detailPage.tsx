@@ -48,7 +48,9 @@ const DetailPage = ({route}: NavigateProps<"detail">) => {
                 onFullscreenPlayerWillDismiss={onFullscreenPlayerWillDismiss}
                 onFullscreenPlayerDidDismiss={onFullscreenPlayerDidDismiss}
             />
-            <DetailListComponent id={id}/>
+            <DetailListComponent id={id} itemCallback={(item) => {
+                setVideoUrl(item.data?.playUrl ?? "")
+            }}/>
         </View>
     )
 }

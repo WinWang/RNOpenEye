@@ -1,4 +1,4 @@
-import {FlatList, RefreshControl, StyleSheet} from "react-native";
+import {FlatList, RefreshControl} from "react-native";
 import DetailItemComponent from "./detailItemComponent";
 import {FC, useEffect, useState} from "react";
 import apiService from "../../../http/apiService";
@@ -11,12 +11,16 @@ import StateComponent from "../../../component/StateComponent";
  * @param id
  * @constructor
  */
-const DetailListComponent: FC<{ id: number }> = ({id}) => {
-
+const DetailListComponent: FC<{ id: number, itemCallback: (item: HomeModelIssueListItemList) => void }> = (
+    {
+        id,
+        itemCallback
+    }) => {
     const [dataList, setDataList] = useState<HomeModelIssueListItemList[]>([])
     const [refreshing, setRefreshing] = useState(false);
     const [handlerRefresh, setHandlerRefresh] = useState(false)
     const [viewState, requestApi] = useRequestStatus()
+    const [playIndex, setPlayIndex] = useState(-1)
 
 
     useEffect(() => {
@@ -38,7 +42,10 @@ const DetailListComponent: FC<{ id: number }> = ({id}) => {
         <StateComponent loadingState={viewState} retryCallback={onRefresh}>
             <FlatList
                 data={dataList}
-                renderItem={({item}) => DetailItemComponent(item)}
+                renderItem={({item, index}) => DetailItemComponent(index, playIndex, item, (item) => {
+                    setPlayIndex(index)
+                    itemCallback(item)
+                })}
                 keyExtractor={(item, index) => index.toString()}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
             />

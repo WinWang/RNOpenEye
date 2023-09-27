@@ -9,6 +9,8 @@ import FindPage from "../page/find/findPage";
 import {RouteProp} from "@react-navigation/native";
 import CategoryDetailPage from "../page/categoryDetail/categoryDetailPage";
 import TopicDetailPage from "../page/topicDetail/topicDetailPage";
+import ContainerPage from "../page/container/containerPage";
+import WebviewPage from "../page/webview/webviewPage";
 
 /***路由名称**/
 export const Splash = "splash"
@@ -20,6 +22,8 @@ export const Mine = "mine"
 export const Detail = "detail"
 export const CategoryDetail = "categoryDetail"
 export const TopicDetail = "topicDetail"
+export const Container = "container"
+export const Webview = "webview"
 
 
 /***路由参数**/
@@ -30,6 +34,8 @@ export type RootStackParamList = {
     [CategoryDetail]: { id: number, headImageUrl: string, name: string };
     [Find]: undefined;
     [TopicDetail]: { id: number }
+    [Container]: { type: string, title: string }
+    [Webview]: { url: string, title: string }
 };
 
 export type NavigateProps<RouteName extends keyof RootStackParamList> = {
@@ -101,6 +107,8 @@ const AppRouter = () => {
             <Stack.Screen name={Find} component={FindPage}/>
             <Stack.Screen name={CategoryDetail} component={CategoryDetailPage}/>
             <Stack.Screen name={TopicDetail} component={TopicDetailPage}/>
+            <Stack.Screen name={Container} component={ContainerPage}/>
+            <Stack.Screen name={Webview} component={WebviewPage}/>
         </Stack.Navigator>
     );
 }

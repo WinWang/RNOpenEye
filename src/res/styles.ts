@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import {color_333} from "./colors";
+import {color_333, color_999, color_d5d5d5} from "./colors";
 
 /**
  * 全局样式
@@ -55,10 +55,16 @@ const appStyles = StyleSheet.create({
         width: "100%",
     },
 
-
     container: {
         flex: 1,
+    },
+
+    horizontalDivider: {
+        width: "100%",
+        height: 0.5,
+        backgroundColor: color_d5d5d5
     }
+
 
 });
 

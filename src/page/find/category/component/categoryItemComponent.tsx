@@ -20,7 +20,7 @@ const CategoryItemComponent = (item: categoryModelChild, itemClick?: (item: cate
 const styles = StyleSheet.create({
 
     imageTextWrapper: {
-        height: 190,
+        height: 170,
         width: "50%",
         display: "flex",
         flexDirection: "column",
@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     },
 
     imageStyle: {
-        width: "95%",
-        height: "95%",
+        width: "97%",
+        height: "97%",
         borderRadius: 6,
     },
 

@@ -1,17 +1,22 @@
-import {StyleSheet, Text, View} from "react-native";
+import {Pressable, StyleSheet, Text, View} from "react-native";
 import {HomeModelIssueListItemList} from "../../../model/homeModel";
 import {color_111, color_666} from "../../../res/colors";
 import NetworkImage from "../../../component/NetworkImage";
+import LogUtils from "../../../utils/LogUtils";
 
-const DetailItemComponent = (item: HomeModelIssueListItemList) => {
+const DetailItemComponent = (index: number, playIndex: number, item: HomeModelIssueListItemList, itemClick: (item: HomeModelIssueListItemList) => void) => {
     return (
-        <View style={styles.horizontalLayout}>
-            <NetworkImage source={{uri: item.data?.cover.feed}} style={{width: 150, height: 100, borderRadius: 5}}/>
+        <Pressable style={styles.horizontalLayout} onPress={() => {
+            itemClick(item)
+        }}>
+            <NetworkImage source={{uri: item.data?.cover.feed}} style={{width: 130, height: 100, borderRadius: 5}}/>
             <View style={styles.verticalLayout}>
-                <Text ellipsizeMode={"tail"} numberOfLines={2} style={styles.titleStyle}>{item.data?.title}</Text>
-                <Text ellipsizeMode={"tail"} numberOfLines={2} style={styles.descStyle}>{item.data?.description}</Text>
+                <Text ellipsizeMode={"tail"} numberOfLines={2}
+                      style={[styles.titleStyle, {color: playIndex == index ? 'red' : color_111}]}>{item.data?.title}</Text>
+                <Text ellipsizeMode={"tail"} numberOfLines={2}
+                      style={[styles.descStyle, {color: playIndex == index ? 'red' : color_666}]}>{item.data?.description}</Text>
             </View>
-        </View>
+        </Pressable>
     )
 }
 

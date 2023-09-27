@@ -6,7 +6,7 @@ import {SceneMap, TabView} from "react-native-tab-view";
 import HotRankPage from "./rankPage/hotRankPage";
 import CustomTabBar from "../../component/CustomTabbar";
 
-const HotPage = () => {
+const HotPage = ({showTitleBar = true}) => {
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         {key: 'weekly', title: '周排行'},
@@ -36,7 +36,7 @@ const HotPage = () => {
 
     return (
         <View style={appStyles.container}>
-            <TitleBar title="热门" showBackIcon={false}/>
+            {showTitleBar && <TitleBar title="热门" showBackIcon={false}/>}
             <View style={{flex: 1}}>
                 <TabView
                     lazy={true}
